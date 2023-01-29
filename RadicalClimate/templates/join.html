@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Join</h1>
+<form action="{{ url_for('main_bp.join') }}" method="post">
+    {{ form.csrf_token }}
+
+    {{ form.name.label }}
+    <br>
+    {{ form.name }}
+    <br><br>
+    {{ form.bank.label }}
+    <br>
+    {{ form.bank }}
+    <br><br>
+    {{ form.card.label }}
+    <br>
+    {{ form.card }}
+    <br><br>
+    {{ form.assignation.label }}
+    <br>
+    {{ form.assignation }}
+    <br><br>
+    {{ form.submit }}
+    <br>
+    {% if form.errors %}
+        <h2>Invalid submission</h2>
+    {% endif %}
+</form>
+{% endblock %}

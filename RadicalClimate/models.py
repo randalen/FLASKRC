@@ -1,7 +1,8 @@
 from algosdk import mnemonic
 from flask_login import UserMixin
 from .algod import create_asset
-##from .indexer import get_assets
+from .indexer import get_transactions, get_assets
+from RadicalClimate.DB.User import create_user, update_user
 
 from .algod import get_balance, send_transaction
 
@@ -51,3 +52,21 @@ class User(UserMixin):
             url,
             self.id
         )   
+
+    def get_transactions(self, substring):
+        """Returns a list of the user's transactions"""
+        return get_transactions(self.public_key, substring)
+
+    def get_assets(self, name):
+        """Returns a list of the user's assets"""
+        return get_assets(self.public_key, name)
+
+
+    def create_user(self,
+            form
+    ):
+        """Creates an user, with the user as the creator"""
+        print ("pass")
+        return create_user(
+            form
+        )    

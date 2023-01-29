@@ -5,7 +5,8 @@ from algosdk import account, mnemonic
 from algosdk.constants import microalgos_to_algos_ratio
 from algosdk.v2client import algod 
 from algosdk.future.transaction import PaymentTxn
-from algosdk.future.transaction import AssetConfigTxn
+from algosdk.future.transaction import AssetConfigTxn, AssetTransferTxn
+
 
 def algod_client():
     algod_address = "https://testnet-algorand.api.purestake.io/ps2"
@@ -16,7 +17,7 @@ def algod_client():
 
 def create_account():
     private_key, Address = account.generate_account()
-    return mnemonic.from_private_key(private_key)
+    return mnemonic.from_private_key(private_key), Address
 
 def get_balance (address):
     account_info = algod_client().account_info(address)

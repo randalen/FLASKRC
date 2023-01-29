@@ -77,3 +77,15 @@ input[type=submit]:hover {
     background-color: lightcoral;
     color: white;
 }
+
+table {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th, td {
+    border-bottom: 1px solid lightgrey;
+    padding: 4px;
+    padding-right: 16px;
+}

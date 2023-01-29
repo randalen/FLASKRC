@@ -63,3 +63,33 @@ class LoginForm(FlaskForm):
     """Form for logging into an account"""
     passphrase = StringField('25-word Passphrase', validators=[InputRequired()])
     submit = SubmitField('Login')
+
+class FilterForm(FlaskForm):
+    """Form for filtering transactions and assets"""
+    substring = StringField(
+        'Filter',
+        validators=[Optional()],
+        render_kw={"placeholder": "Filter list"}
+    )
+    submit = SubmitField('Search')
+
+
+class JoinForm (FlaskForm):
+    """Form for join a user"""
+    name = StringField(
+        'Name',
+        validators=[InputRequired()]
+    )
+    bank = StringField(
+        'Bank',
+        validators=[InputRequired()]
+    )
+    card = IntegerField(
+        'Card Last4 digits',
+        validators=[InputRequired()]
+    )
+    assignation = IntegerField(
+        'Assignation %',
+        validators=[InputRequired()]
+    )
+    submit = SubmitField('Request')
