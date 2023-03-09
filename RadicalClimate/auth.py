@@ -20,8 +20,8 @@ auth_bp = Blueprint(
 )
 ################REACT ENDPOINTS#####################
 
-@auth_bp.route('/login', methods=['POST'])
-def login():
+@auth_bp.route('/loginReact', methods=['GET','POST'])
+def loginReact():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
     if email != "test" or password != "test":
@@ -55,27 +55,27 @@ def unauthorized():
 
 #################legacy#####################
 
-#     @auth_bp.route('/login', methods=['GET', 'POST'])
-# def login():
-#     """Default login page"""
-#     if current_user.is_authenticated:
-#         return redirect(url_for('main_bp.index'))
+@auth_bp.route('/login', methods=['GET', 'POST'])
+def login():
+    """Default login page"""
+    if current_user.is_authenticated:
+        return redirect(url_for('main_bp.index'))
 
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         try:
-#             user = User(passphrase=form.passphrase.data)
-#             login_user(user)
-#             return redirect(url_for('main_bp.index'))
-#         except Exception as err:
-#             flash(err)
-#             return render_template('login.html', form=form)
-#     return render_template('login.html', form=form)
+    form = LoginForm()
+    if form.validate_on_submit():
+        try:
+            user = User(passphrase=form.passphrase.data)
+            login_user(user)
+            return redirect(url_for('main_bp.index'))
+        except Exception as err:
+            flash(err)
+            return render_template('login.html', form=form)
+    return render_template('login.html', form=form)
 
-# @auth_bp.route('/signup', methods=['GET', 'POST'])
-# def signup():
-#     """Generates a user account and shows its passphrase"""
-#     passphrase = create_account()
-#     user = User(passphrase=passphrase)
-#     login_user(user)
-#     return render_template('mnemonic.html', passphrase=passphrase)
+@auth_bp.route('/signup', methods=['GET', 'POST'])
+def signup():
+    """Generates a user account and shows its passphrase"""
+    passphrase = create_account()
+    user = User(passphrase=passphrase)
+    login_user(user)
+    return render_template('mnemonic.html', passphrase=passphrase)

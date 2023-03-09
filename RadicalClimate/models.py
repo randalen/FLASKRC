@@ -2,7 +2,7 @@ from algosdk import mnemonic
 from flask_login import UserMixin
 from .algod import create_asset
 from .indexer import get_transactions, get_assets
-from RadicalClimate.DB.User import create_user, update_user
+from RadicalClimate.DB.Buyers import create_user, update_user
 
 from .algod import get_balance, send_transaction
 
